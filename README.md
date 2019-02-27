@@ -33,5 +33,9 @@ These are the software packages we have used to process our data. Not all packag
 | [Neuroelf](http://neuroelf.net/)                         | 1.1rc2       |
 | [Matlab](https://www.mathworks.com/products/matlab.html) | 2016a        |
 
+## Support
+
+Please use our GitHub issues page for posting questions or problems.
+
 ## License
 The project is licensed under [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause).
