@@ -1,5 +1,5 @@
-# Subcortical auditory atlas (work in progress...)
-Resources from our human subcortical auditory pathway mapping project.
+# Human subcortical auditory atlas (work in progress...)
+Resources from our subcortical auditory pathway mapping project that combines state of the art post-mortem and in-vivo human magnetic resonance imaging (MRI) at ultra-high fields (7 Tesla) together with gold-standard human histology dataset for detailed validation.
 
 ### Citation
 TODO: add link to preprint
@@ -38,6 +38,9 @@ These are the software packages we have used to process our data. Not all packag
 | [Neuroelf](http://neuroelf.net/)                         | 1.1rc2       |
 | [Matlab](https://www.mathworks.com/products/matlab.html) | 2016a        |
 | [TrackVis](http://www.trackvis.org/)                     | 0.6.1        |
+| [Geogram](TODO)|?    |
+
+_Note:_ This project is the culmination of ~4 years of work of two PhD students who started similar projects separately (one at Harvard and other in Maastricht University) but collaborated for the final product after ~3 years. As a result of this, so many different software packages are used in combination. We strongly believe in the spirit of open science therefore we put our best effort to make our work transparent with this repository. However, we are also aware that we have used a few commercial packages that might not be available for everyone. By sharing our flowcharts and code, we hope that future investigators might have a headstart to do better than us by using more modern methods.
 
 ## Support
 
