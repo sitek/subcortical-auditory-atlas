@@ -16,10 +16,12 @@ We have used the datasets accessible from the following sources:
 |----------------------------------------------------------|--------------|
 | [BigBrain](https://bigbrain.loris.ca/main.php)           | 2015 release |
 | [MNI ICBM 152](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009)| 2009b Nonlin. Sym.|
-| [Post-mortem](TODO: add link)                            | ?        |
-| [In-vivo](TODO: add link)                                | ?        |
+| [Post mortem (request)](http://www.civm.duhs.duke.edu/SharedData/DataSupplements.htm)                            | ?        |
+| [In vivo](TODO: add link)                                | ?        |
 
-TODO: add link to our OSF page.
+
+Data produced by these analyses are available at [OSF](https://osf.io/hxekn/?view_only=be9ec398304344e8bb694a0658d77ed6).
+
 
 ### Software
 These are the software packages we have used to process our data. Not all packages are used in all processes. You can see specifically required packages for each processing step in flowcharts or script docstrings.
@@ -35,6 +37,7 @@ These are the software packages we have used to process our data. Not all packag
 | [Brainvoyager](https://www.brainvoyager.com/)            | 2.8.4        |
 | [Neuroelf](http://neuroelf.net/)                         | 1.1rc2       |
 | [Matlab](https://www.mathworks.com/products/matlab.html) | 2016a        |
+| [TrackVis](http://www.trackvis.org/)                     | 0.6.1        |
 
 ## Support
 
