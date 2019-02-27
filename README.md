@@ -4,6 +4,9 @@ Resources from our human subcortical auditory pathway mapping project.
 ### Citation
 TODO: add link to preprint
 
+## Overview
+<img src=flowcharts/overview_of_data_processing.svg>
+
 ## Dependencies
 
 ### Data
