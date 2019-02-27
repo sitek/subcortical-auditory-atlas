@@ -1,6 +1,9 @@
 # Human subcortical auditory atlas (work in progress...)
 Resources from our subcortical auditory pathway mapping project that combines state of the art post-mortem and in-vivo human magnetic resonance imaging (MRI) at ultra-high fields (7 Tesla) together with gold-standard human histology dataset for detailed validation.
 
+TODO: add rotating glass brain animation
+TODO: add wide shots of brainstem
+
 ### Citation
 TODO: add link to preprint
 
