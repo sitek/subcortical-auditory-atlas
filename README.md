@@ -26,7 +26,7 @@ We have used the datasets accessible from the following sources:
 |----------------------------------------------------------|--------------|
 | [BigBrain](https://bigbrain.loris.ca/main.php)           | 2015 release |
 | [MNI ICBM 152](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009)| 2009b Nonlin. Sym.|
-| [Post mortem (request)](http://www.civm.duhs.duke.edu/SharedData/DataSupplements.htm)                            | ?        |
+| [Post mortem (request)](http://www.civm.duhs.duke.edu/SharedData/DataSupplements.htm)| ?        |
 | [In vivo](TODO: add link)                                | ?        |
 
 
@@ -48,7 +48,7 @@ These are the software packages we have used to process our data. Not all packag
 | [Neuroelf](http://neuroelf.net/)                         | 1.1rc2       |
 | [Matlab](https://www.mathworks.com/products/matlab.html) | 2016a        |
 | [TrackVis](http://www.trackvis.org/)                     | 0.6.1        |
-| [Geogram](TODO)|?    |
+| [Geogram](http://alice.loria.fr/software/geogram)        | 1.6.7        |
 
 _Note:_ This project is the culmination of ~4 years of work of two PhD students who started similar projects separately (one at Harvard and other in Maastricht University) but collaborated for the final product after ~3 years. As a result of this, so many different software packages are used in combination. We strongly believe in the spirit of open science therefore we put our best effort to make our work transparent with this repository. However, we are also aware that we have used a few commercial packages that might not be available for everyone. By sharing our flowcharts and code, we hope that future investigators might have a headstart to do better than us by using more modern methods.
 
