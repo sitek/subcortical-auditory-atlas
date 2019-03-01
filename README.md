@@ -1,7 +1,7 @@
 <img src=readme_visuals/visual_01.svg>
-# Human subcortical auditory atlas
-__(work in progress...)__
+(work in progress...)
 
+# Human subcortical auditory atlas
 Resources from our subcortical (midbrain and brainstem) auditory pathway mapping project that combines state of the art post-mortem and in-vivo human magnetic resonance imaging (MRI) at ultra-high fields (7 Tesla) together with gold-standard human histology dataset for detailed validation. Our target regions were:
 1. Medial geniculate body
 2. Inferior colliculus
