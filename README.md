@@ -1,5 +1,8 @@
-# Human brainstem and subcortical auditory atlas (work in progress...)
-Resources from our brainstem and subcortical auditory pathway mapping project that combines state of the art post-mortem and in-vivo human magnetic resonance imaging (MRI) at ultra-high fields (7 Tesla) together with gold-standard human histology dataset for detailed validation. Our target regions were:
+<img src=readme_visuals/visual_01.svg>
+# Human subcortical auditory atlas
+__(work in progress...)__
+
+Resources from our subcortical (midbrain and brainstem) auditory pathway mapping project that combines state of the art post-mortem and in-vivo human magnetic resonance imaging (MRI) at ultra-high fields (7 Tesla) together with gold-standard human histology dataset for detailed validation. Our target regions were:
 1. Medial geniculate body
 2. Inferior colliculus
 3. Superior olivary complex
@@ -7,15 +10,8 @@ Resources from our brainstem and subcortical auditory pathway mapping project th
 
 In this endeavor, the major challenges were to understand the 3D shapes of these structures (in humans) from the diagrams and figures published in previous literature as well as communicating our results to our colleagues in a common reference system (MNI space). With this repository, we aim to supplement our manuscript by making the processes lead to our results more accessible to interested readers.
 
-TODO: add wide shots of brainstem
-TODO: add rotating glass brain animation
-TODO: add 3D models in mesh format to data repo. and refer to them here
-
 ### Citation
 TODO: add link to preprint
-
-## Overview
-<img src=flowcharts/overview_of_data_processing.svg>
 
 ## Dependencies
 
