@@ -14,7 +14,7 @@ Resources from our subcortical (midbrain and brainstem) auditory pathway mapping
 In this endeavor, the major challenges were to understand the 3D shapes of these structures (in humans) from the diagrams and figures published in previous literature as well as communicating our results to our colleagues in a common reference system (MNI space). With this repository, we aim to supplement our manuscript by making the processes lead to our results more accessible to interested readers.
 
 ### Citation
-Preprint available at [bioRxiv](https://www.biorxiv.org/content/10.1101/568139v1)
+Preprint available at [bioRxiv](https://www.biorxiv.org/content/10.1101/568139v1).
 
 ## Dependencies
 
@@ -25,13 +25,12 @@ We have used the datasets accessible from the following sources:
 |----------------------------------------------------------|--------------|
 | [BigBrain](https://bigbrain.loris.ca/main.php)           | 2015 release |
 | [MNI ICBM 152](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009)| 2009b Nonlin. Sym.|
-| [Post mortem (request)](http://www.civm.duhs.duke.edu/SharedData/DataSupplements.htm)| n/a        |
+| [Post mortem (request)](http://www.civm.duhs.duke.edu/SharedData/DataSupplements.htm)*| n/a        |
 | [In vivo](TODO: add link)                                | ?        |
 
-Post mortem anatomical images can be explored using [neuroglancer](http://oms.mit.edu:8080/#!%7B%22layers%22:%7B%22precomputed%22:%7B%22source%22:%22precomputed://http://oms.mit.edu:8080/precomputed%22%2C%22type%22:%22image%22%7D%7D%2C%22navigation%22:%7B%22pose%22:%7B%22position%22:%7B%22voxelSize%22:%5B50000%2C50000%2C50000%5D%2C%22voxelCoordinates%22:%5B789.3259887695312%2C577.9903564453125%2C586.8760986328125%5D%7D%7D%2C%22zoomFactor%22:25513.613430689424%7D%2C%22showSlices%22:false%2C%22layout%22:%224panel%22%7D).
+__Data produced by these analyses are available at [OSF](https://osf.io/hxekn/?view_only=be9ec398304344e8bb694a0658d77ed6).__ 
 
-Data produced by these analyses are available at [OSF](https://osf.io/hxekn/?view_only=be9ec398304344e8bb694a0658d77ed6).
-
+__*:__ Post mortem anatomical images can be explored using [neuroglancer](http://oms.mit.edu:8080/#!%7B%22layers%22:%7B%22precomputed%22:%7B%22source%22:%22precomputed://http://oms.mit.edu:8080/precomputed%22%2C%22type%22:%22image%22%7D%7D%2C%22navigation%22:%7B%22pose%22:%7B%22position%22:%7B%22voxelSize%22:%5B50000%2C50000%2C50000%5D%2C%22voxelCoordinates%22:%5B789.3259887695312%2C577.9903564453125%2C586.8760986328125%5D%7D%7D%2C%22zoomFactor%22:25513.613430689424%7D%2C%22showSlices%22:false%2C%22layout%22:%224panel%22%7D).
 
 ### Software
 These are the software packages we have used to process our data. Not all packages are used in all processes. You can see specifically required packages for each processing step in flowcharts or script docstrings.
