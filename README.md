@@ -56,4 +56,5 @@ _Note:_ This project is the culmination of ~4 years of work of two PhD students 
 Please use our GitHub issues page for posting questions or problems.
 
 ## License
-The project is licensed under [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause).
+The project is licensed under [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause) unless otherwise stated in individual parts in it. See the sections with different licenses below:
+- code/invivo/anatomical/preprocessing is modified from HCP pipelines ([see license](./code/invivo/diffusion/01_preprocess/LICENSE.md)).
