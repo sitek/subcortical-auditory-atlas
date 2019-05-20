@@ -1,0 +1,369 @@
+from nipype import config
+config.set('execution', 'remove_unnecessary_outputs', 'false')
+config.set('execution', 'crashfile_format', 'txt')
+
+#config.enable_provenance()
+
+from nipype import Node, Function, Workflow, IdentityInterface
+from nipype.interfaces.io import SelectFiles, DataSink
+
+import os
+from glob import glob
+
+resolution = '0.2mm'
+out_prefix = 'alow-0p001_angthr-75_minangle-10_fathresh-50_20190517'
+
+#dirs = '45-dirs'
+dirs = ''
+recon = 'csd'
+num_threads =  4 # GQI peaks_from_model crashes with 450GB with 6+ threads
+
+project_dir = os.path.abspath('/om2/user/ksitek/exvivo/')
+data_dir = os.path.join(project_dir, 'data', 'diff')
+sids = ['Reg_S64550']
+
+if len(dirs):
+    out_dir = os.path.join(project_dir, 'analysis/dipy/',
+                       '%s/%s_%s_%s/'%(recon, out_prefix, resolution, dirs))
+    work_dir = os.path.join('/om2/scratch/ksitek/dipy/',
+                            '%s/%s_%s_%s/'%(recon, out_prefix, resolution, dirs))
+
+else:
+    out_dir = os.path.join(project_dir, 'analysis/dipy/',
+                       '%s/%s_%s/'%(recon, out_prefix, resolution))
+    work_dir = os.path.join('/om2/scratch/ksitek/dipy/',
+                            '%s/%s_%s/'%(recon, out_prefix, resolution))
+
+if not os.path.exists(out_dir):
+    os.makedirs(out_dir, exist_ok=True)
+
+def dmri_recon(sid, data_dir, out_dir, resolution, recon='csd', dirs = '', num_threads=2):
+    import tempfile
+    #tempfile.tempdir = '/om/scratch/Fri/ksitek/'
+
+    import os
+    oldval = None
+    if 'MKL_NUM_THREADS' in os.environ:
+        oldval = os.environ['MKL_NUM_THREADS']
+    os.environ['MKL_NUM_THREADS'] = '%d' % num_threads
+    ompoldval = None
+    if 'OMP_NUM_THREADS' in os.environ:
+        ompoldval = os.environ['OMP_NUM_THREADS']
+    os.environ['OMP_NUM_THREADS'] = '%d' % num_threads
+    import nibabel as nib
+    import numpy as np
+    from glob import glob
+
+    if resolution == '0.2mm':
+        filename = 'Reg_S64550_nii4d.nii'
+        #filename = 'angular_resample/dwi_%s.nii.gz'%dirs
+        fimg = os.path.abspath(glob(os.path.join(data_dir, filename))[0])
+    else:
+        filename = 'Reg_S64550_nii4d_resamp-%s.nii.gz'%(resolution)
+        #filename = 'angular_resample/dwi_%s_%s.nii.gz'%(resolution, dirs)
+        fimg = os.path.abspath(glob(os.path.join(data_dir, 'resample', filename))[0])
+        #fimg = os.path.abspath(glob(os.path.join(data_dir, filename))[0])
+    print("dwi file = %s"%fimg)
+    fbval = os.path.abspath(glob(os.path.join(data_dir,
+                                              'bvecs',
+                                              'camino_120_RAS.bvals'))[0])
+    #                                          'angular_resample',
+    #                                          'dwi_%s.bvals'%dirs))[0])
+    print("bval file = %s"%fbval)
+    fbvec = os.path.abspath(glob(os.path.join(data_dir,
+                                              'bvecs',
+                                              'camino_120_RAS_flipped-xy.bvecs'))[0])
+    #                                          'angular_resample',
+    #                                          'dwi_%s.bvecs'%dirs))[0])
+    print("bvec file = %s"%fbvec)
+    img = nib.load(fimg)
+    data = img.get_fdata()
+
+    affine = img.get_affine()
+
+    prefix = sid
+
+    from dipy.io import read_bvals_bvecs
+    bvals, bvecs = read_bvals_bvecs(fbval, fbvec)
+
+    '''
+    from dipy.core.gradients import vector_norm
+    b0idx = []
+    for idx, val in enumerate(bvals):
+        if val < 1:
+            pass
+            #bvecs[idx] = [1, 0, 0]
+        else:
+            b0idx.append(idx)
+            #print "b0idx=%d"%idx
+    #print "input bvecs:"
+    #print bvecs
+    bvecs[b0idx, :] = bvecs[b0idx, :]/vector_norm(bvecs[b0idx])[:, None]
+    #print "bvecs after normalization:"
+    #print bvecs
+    '''
+
+    from dipy.core.gradients import gradient_table
+    gtab = gradient_table(bvals, bvecs)
+    gtab.bvecs.shape == bvecs.shape
+    gtab.bvecs
+    gtab.bvals.shape == bvals.shape
+    gtab.bvals
+
+    #from dipy.segment.mask import median_otsu
+    #b0_mask, mask = median_otsu(data[:, :, :, b0idx].mean(axis=3).squeeze(), 4, 4)
+
+    if resolution == '0.2mm':
+        mask_name = 'Reg_S64550_nii_b0-slice_mask.nii.gz'
+        fmask1 = os.path.join(data_dir, mask_name)
+    else:
+        mask_name = 'Reg_S64550_nii_b0-slice_mask_resamp-%s.nii.gz'%(resolution)
+        fmask1 = os.path.join(data_dir, 'resample', mask_name)
+    print("fmask file = %s"%fmask1)
+    mask = nib.load(fmask1).get_fdata()
+
+    ''' DTI model & save metrics '''
+    from dipy.reconst.dti import TensorModel
+    print("running tensor model")
+    tenmodel = TensorModel(gtab)
+    tenfit = tenmodel.fit(data, mask)
+
+    from dipy.reconst.dti import fractional_anisotropy
+    print("running FA")
+    FA = fractional_anisotropy(tenfit.evals)
+    FA[np.isnan(FA)] = 0
+    fa_img = nib.Nifti1Image(FA, img.get_affine())
+    tensor_fa_file = os.path.abspath('%s_tensor_fa.nii.gz' % (prefix))
+    nib.save(fa_img, tensor_fa_file)
+
+    from dipy.reconst.dti import axial_diffusivity
+    print("running AD")
+    AD = axial_diffusivity(tenfit.evals)
+    AD[np.isnan(AD)] = 0
+    ad_img = nib.Nifti1Image(AD, img.get_affine())
+    tensor_ad_file = os.path.abspath('%s_tensor_ad.nii.gz' % (prefix))
+    nib.save(ad_img, tensor_ad_file)
+
+    from dipy.reconst.dti import radial_diffusivity
+    print("running RD")
+    RD = radial_diffusivity(tenfit.evals)
+    RD[np.isnan(RD)] = 0
+    rd_img = nib.Nifti1Image(RD, img.get_affine())
+    tensor_rd_file = os.path.abspath('%s_tensor_rd.nii.gz' % (prefix))
+    nib.save(rd_img, tensor_rd_file)
+
+    from dipy.reconst.dti import mean_diffusivity
+    print("running MD")
+    MD = mean_diffusivity(tenfit.evals)
+    MD[np.isnan(MD)] = 0
+    md_img = nib.Nifti1Image(MD, img.get_affine())
+    tensor_md_file = os.path.abspath('%s_tensor_md.nii.gz' % (prefix))
+    nib.save(md_img, tensor_md_file)
+
+    evecs = tenfit.evecs
+    evec_img = nib.Nifti1Image(evecs, img.get_affine())
+    tensor_evec_file = os.path.abspath('%s_tensor_evec.nii.gz' % (prefix))
+    nib.save(evec_img, tensor_evec_file)
+
+    ''' ODF model '''
+    useFA = True
+    print("creating %s model"%recon)
+    if recon == 'csd':
+        from dipy.reconst.csdeconv import ConstrainedSphericalDeconvModel
+        from dipy.reconst.csdeconv import auto_response
+        response, ratio = auto_response(gtab, data, roi_radius=10, fa_thr=0.5) # 0.7
+
+        model = ConstrainedSphericalDeconvModel(gtab, response)
+        useFA = True
+        return_sh = True
+    elif recon == 'csa':
+        from dipy.reconst.shm import CsaOdfModel, normalize_data
+        model = CsaOdfModel(gtab, sh_order=8)
+        useFA = True
+        return_sh = True
+    elif recon == 'gqi':
+        from dipy.reconst.gqi import GeneralizedQSamplingModel
+        model = GeneralizedQSamplingModel(gtab)
+        return_sh = False
+    else:
+        raise ValueError('only csd, csa supported currently')
+        from dipy.reconst.dsi import (DiffusionSpectrumDeconvModel,
+                                      DiffusionSpectrumModel)
+        model = DiffusionSpectrumDeconvModel(gtab)
+
+    '''reconstruct ODFs'''
+    from dipy.data import get_sphere
+    sphere = get_sphere('symmetric724')
+    #odfs = fit.odf(sphere)
+
+    # with CSD/GQI, uses > 50GB per core; don't get greedy with cores!
+    from dipy.reconst.peaks import peaks_from_model
+    print("running peaks_from_model")
+    peaks = peaks_from_model(model=model,
+                             data=data,
+                             sphere=sphere,
+                             mask=mask,
+                             return_sh=return_sh,
+                             return_odf=False,
+                             normalize_peaks=True,
+                             npeaks=5,
+                             relative_peak_threshold=.5,
+                             min_separation_angle=10,#25,
+                             parallel=num_threads > 1,
+                             nbr_processes=num_threads)
+
+    # save the peaks
+    from dipy.io.peaks import save_peaks
+    peaks_file = os.path.abspath('%s_peaks.pam5' % (prefix))
+    save_peaks(peaks_file, peaks)
+
+    # save the spherical harmonics
+    shm_coeff_file = os.path.abspath('%s_shm_coeff.nii.gz' % (prefix))
+    if return_sh:
+        shm_coeff = peaks.shm_coeff
+        nib.save(nib.Nifti1Image(shm_coeff, img.get_affine()), shm_coeff_file)
+    else:
+        # if it's not a spherical model, output it as an essentially null file
+        np.savetxt(shm_coeff_file, [0])
+
+    # save the generalized fractional anisotropy image
+    gfa_img = nib.Nifti1Image(peaks.gfa, img.get_affine())
+    model_gfa_file = os.path.abspath('%s_%s_gfa.nii.gz' % (prefix, recon))
+    nib.save(gfa_img, model_gfa_file)
+
+    #from dipy.reconst.dti import quantize_evecs
+    #peak_indices = quantize_evecs(tenfit.evecs, sphere.vertices)
+    #eu = EuDX(FA, peak_indices, odf_vertices = sphere.vertices,
+               #a_low=0.2, seeds=10**6, ang_thr=35)
+
+    ''' probabilistic tracking '''
+    '''
+    from dipy.direction import ProbabilisticDirectionGetter
+    from dipy.tracking.local import LocalTracking
+    from dipy.tracking.streamline import Streamlines
+    from dipy.io.streamline import save_trk
+
+    prob_dg = ProbabilisticDirectionGetter.from_shcoeff(shm_coeff,
+                                                        max_angle=45.,
+                                                        sphere=sphere)
+    streamlines_generator = LocalTracking(prob_dg,
+                                          affine,
+                                          step_size=.5,
+                                          max_cross=1)
+
+    # Generate streamlines object
+    streamlines = Streamlines(streamlines_generator)
+
+    affine = img.get_affine()
+    vox_size=fa_img.get_header().get_zooms()[:3]
+
+    fname = os.path.abspath('%s_%s_prob_streamline.trk' % (prefix, recon))
+    save_trk(fname, streamlines, affine, vox_size=vox_size)
+    '''
+
+    ''' deterministic tracking with EuDX method'''
+    from dipy.tracking.eudx import EuDX
+    print("reconstructing with EuDX")
+    if useFA:
+        eu = EuDX(FA, peaks.peak_indices[..., 0],
+                  odf_vertices = sphere.vertices,
+                  a_low=0.001, # default is 0.0239
+                  seeds=10**6,
+                  ang_thr=75)
+    else:
+        eu = EuDX(peaks.gfa, peaks.peak_indices[..., 0],
+                  odf_vertices = sphere.vertices,
+                  #a_low=0.1,
+                  seeds=10**6,
+                  ang_thr=45)
+
+    sl_fname = os.path.abspath('%s_%s_det_streamline.trk' % (prefix, recon))
+
+    # trying new dipy.io.streamline module, per email to neuroimaging list
+    # 2018.04.05
+    from nibabel.streamlines import Field
+    from nibabel.orientations import aff2axcodes
+    affine = img.get_affine()
+    vox_size=fa_img.get_header().get_zooms()[:3]
+    fov_shape=FA.shape[:3]
+
+    if vox_size is not None and fov_shape is not None:
+        hdr = {}
+        hdr[Field.VOXEL_TO_RASMM] = affine.copy()
+        hdr[Field.VOXEL_SIZES] = vox_size
+        hdr[Field.DIMENSIONS] = fov_shape
+        hdr[Field.VOXEL_ORDER] = "".join(aff2axcodes(affine))
+
+    tractogram = nib.streamlines.Tractogram(eu)
+    tractogram.affine_to_rasmm = affine
+    trk_file = nib.streamlines.TrkFile(tractogram, header=hdr)
+    nib.streamlines.save(trk_file, sl_fname)
+
+    if oldval:
+        os.environ['MKL_NUM_THREADS'] = oldval
+    else:
+        del os.environ['MKL_NUM_THREADS']
+    if ompoldval:
+        os.environ['OMP_NUM_THREADS'] = ompoldval
+    else:
+        del os.environ['OMP_NUM_THREADS']
+
+    print('all output files created')
+
+    return (tensor_fa_file, tensor_evec_file, model_gfa_file, sl_fname, affine,
+            tensor_ad_file, tensor_rd_file, tensor_md_file,
+            shm_coeff_file, peaks_file)
+
+infosource = Node(IdentityInterface(fields=['subject_id']),
+                                    name='infosource')
+#infosource.iterables = ('subject_id', sids)
+infosource.inputs.subject_id = sids[0]
+
+tracker = Node(Function(input_names=['sid', 'data_dir', 'out_dir', 'resolution',
+                                     'recon', 'dirs','num_threads'],
+                        output_names=['tensor_fa_file',
+                                      'tensor_evec_file',
+                                      'model_gfa_file',
+                                      'model_track_file',
+                                      'affine',
+                                      'tensor_ad_file',
+                                      'tensor_rd_file',
+                                      'tensor_md_file',
+                                      'shm_coeff_file',
+                                      'peaks_file'],
+                        function=dmri_recon), name='tracker')
+tracker.inputs.data_dir = data_dir
+tracker.inputs.out_dir = out_dir
+tracker.inputs.resolution = resolution
+tracker.inputs.recon = recon
+tracker.inputs.dirs = dirs
+tracker.inputs.num_threads = num_threads
+#tracker.plugin_args = {'sbatch_args': '--time=1-00:00:00 --mem=%dG -N 1 -c %d' % (10 * num_threads, num_threads),
+#                       'overwrite': True}
+
+ds = Node(DataSink(parameterization=False), name='sinker')
+ds.inputs.base_directory = out_dir
+ds.plugin_args = {'overwrite': True}
+
+wf = Workflow(name='exvivo')
+wf.config['execution']['crashfile_format'] = 'txt'
+
+wf.connect(infosource, 'subject_id', tracker, 'sid')
+#wf.connect(tracker, 'sid', ds, 'container')
+
+# data sink
+wf.connect(tracker, 'tensor_fa_file', ds, 'recon.@fa')
+wf.connect(tracker, 'tensor_evec_file', ds, 'recon.@evec')
+wf.connect(tracker, 'model_gfa_file', ds, 'recon.@gfa')
+wf.connect(tracker, 'model_track_file', ds, 'recon.@track')
+
+wf.connect(tracker, 'tensor_ad_file', ds, 'recon.@ad')
+wf.connect(tracker, 'tensor_rd_file', ds, 'recon.@rd')
+wf.connect(tracker, 'tensor_md_file', ds, 'recon.@md')
+wf.connect(tracker, 'shm_coeff_file', ds, 'recon.@shm_coeff')
+wf.connect(tracker, 'peaks_file', ds, 'recon.@peaks')
+
+wf.base_dir = work_dir
+
+#wf.run(plugin='SLURM', plugin_args={'sbatch_args': '--time=3-00:00:00 --qos=gablab --mem=80G -N1 -c2'})
+wf.run(plugin='MultiProc')
