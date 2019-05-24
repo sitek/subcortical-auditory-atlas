@@ -10,8 +10,9 @@ from nipype.interfaces.io import SelectFiles, DataSink
 import os
 from glob import glob
 
-resolution = '0.2mm'
-out_prefix = 'alow-0p001_angthr-75_minangle-10_fathresh-50_20190517'
+#resolution = '0.2mm'
+resolution = '1.05mm'
+out_prefix = 'alow-0p001_angthr-75_minangle-10_fathresh-50_20190523'
 
 #dirs = '45-dirs'
 dirs = ''
@@ -60,15 +61,11 @@ def dmri_recon(sid, data_dir, out_dir, resolution, recon='csd', dirs = '', num_t
         fimg = os.path.abspath(glob(os.path.join(data_dir, filename))[0])
     else:
         filename = 'Reg_S64550_nii4d_resamp-%s.nii.gz'%(resolution)
-        #filename = 'angular_resample/dwi_%s_%s.nii.gz'%(resolution, dirs)
         fimg = os.path.abspath(glob(os.path.join(data_dir, 'resample', filename))[0])
-        #fimg = os.path.abspath(glob(os.path.join(data_dir, filename))[0])
     print("dwi file = %s"%fimg)
     fbval = os.path.abspath(glob(os.path.join(data_dir,
                                               'bvecs',
                                               'camino_120_RAS.bvals'))[0])
-    #                                          'angular_resample',
-    #                                          'dwi_%s.bvals'%dirs))[0])
     print("bval file = %s"%fbval)
     fbvec = os.path.abspath(glob(os.path.join(data_dir,
                                               'bvecs',

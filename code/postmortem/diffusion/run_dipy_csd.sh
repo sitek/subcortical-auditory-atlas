@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --time=1-00:00:00
+#SBATCH --time=12:00:00
 #SBATCH --mem=450GB
 #SBATCH --cpus-per-task=4
 #SBATCH --qos=gablab

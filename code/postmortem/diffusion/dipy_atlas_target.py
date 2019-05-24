@@ -17,20 +17,18 @@ import os
 from glob import glob
 
 # which data sampling? also used for naming
-resolution = '0.2mm'
-analysis_prefix = 'alow-0p001_angthr-75_minangle-10_fathresh-50_20190517_0.2mm'
+resolution = '1.05mm'
+analysis_prefix = 'alow-0p001_angthr-75_minangle-10_' \
+                  'fathresh-50_20190523_%s'%resolution
 
+atlas_type = 'conj_kevin_v2_faruk_v1'
 #atlas_type = 'conj_kevin_v2_faruk_v1_dil-500um'
-atlas_type = 'conj_kevin_v2_faruk_v1_with_controls_dil-500um'
-#'func-atlas', '8-structure_201901_0826-atlas'
 
 data_dir = os.path.abspath('/om2/user/ksitek/exvivo/data')
-#out_base = os.path.abspath('/om2/user/ksitek/exvivo/analysis/dipy_csd/')
-analysis_base = os.path.abspath('/om2/user/ksitek/exvivo/analysis/dipy/')
+analysis_base = os.path.join('/om2/user/ksitek/exvivo/analysis/dipy/', 'csd')
 out_dir = os.path.join(analysis_base, '%s_%s/'%(analysis_prefix,
-                                              #resolution,
-                                              atlas_type))
-analysis_dir = os.path.join(analysis_base, 'csd', analysis_prefix)
+                                                atlas_type))
+analysis_dir = os.path.join(analysis_base, analysis_prefix)
 
 sids = ['Reg_S64550']
 
@@ -39,7 +37,6 @@ if not os.path.exists(out_dir):
 
 work_dir = os.path.join('/om2/scratch/ksitek/dipy_csd/',
                         '%s_%s/'%(analysis_prefix,
-                                  #resolution,
                                   atlas_type))
 
 # filter tractography streamlines from specific regions of interest
@@ -53,14 +50,13 @@ else:
                               #'auditory_brainstem_8-structures_0826_atlas2diff_Similarity_Affine_MI_16x8x4x2_MultiLabel.nii.gz')
                               #'segs_201812',
                               #'auditory_brainstem_nuclei_201812_8-structures_to_Reg_S64550_nii_b0-slice_dilD-sphere-0.5.nii.gz')
-                              #'conjunctions',
+                              'conjunctions',
                               #'auditory_brainstem_nuclei_conj_kevin_v2_faruk_v1_100um_to_Reg_S64550_nii_b0-slice.nii.gz')
-                              # 'auditory_brainstem_nuclei_conj_' \
-                              # 'kevin_v1_faruk_v1_100um_' \
-                              # 'to_Reg_S64550_nii_b0-slice_' \
-                              # 'dilD-sphere-500um.nii.gz'
-                              'with_controls',
-                              'conj_kevin_v2_faruk_v1_with_controls_space-dwi_dilM-500um.nii.gz'
+                              'auditory_brainstem_nuclei_conj_' \
+                              'kevin_v1_faruk_v1_100um_' \
+                              'to_Reg_S64550_nii_b0-slice' \
+                              #'_dilD-sphere-500um.nii.gz'
+                              '.nii.gz'
                               )
 
     #atlas_labels = [x+1 for x in range(8)] # labels in current anatomical atlas
