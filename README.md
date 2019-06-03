@@ -26,7 +26,9 @@ We have used the datasets accessible from the following sources:
 | [BigBrain](https://bigbrain.loris.ca/main.php)           | 2015 release |
 | [MNI ICBM 152](http://www.bic.mni.mcgill.ca/ServicesAtlases/ICBM152NLin2009)| 2009b Nonlin. Sym.|
 | [Post mortem (request)](http://www.civm.duhs.duke.edu/SharedData/DataSupplements.htm)*| n/a        |
-| [In vivo](TODO: add link)                                | ?        |
+| [In vivo unprocessed](https://openneuro.org/datasets/ds001942)| v1.0.0     |
+| [In vivo derived](https://osf.io/hxekn/)                 | 2019.05.30 |
+
 
 __Data produced by these analyses are available at [OSF](https://osf.io/hxekn/?view_only=be9ec398304344e8bb694a0658d77ed6).__
 
