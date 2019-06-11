@@ -13,7 +13,7 @@ Resources from our subcortical (midbrain and brainstem) auditory pathway mapping
 In this endeavor, the major challenges were to understand the 3D shapes of these structures (in humans) from the diagrams and figures published in previous literature as well as communicating our results to our colleagues in a common reference system (MNI space). With this repository, we aim to supplement our manuscript by making the processes lead to our results more accessible to interested readers.
 
 ### Citation
-Preprint available at [bioRxiv](https://www.biorxiv.org/content/10.1101/568139v1).
+Preprint available at [bioRxiv](https://www.biorxiv.org/content/10.1101/568139v2).
 
 ## Dependencies
 
