@@ -3,7 +3,7 @@
 # Human subcortical auditory atlas
 Resources from our subcortical (midbrain and brainstem) auditory pathway mapping project that combines state of the art post-mortem and in-vivo human magnetic resonance imaging (MRI) at ultra-high fields (7 Tesla) together with gold-standard human histology dataset for detailed validation. Our target regions were:
 
-<img src="readme_visuals/visual_02.svg" width=400 align="right" />
+<img src="readme_visuals/visual_02.svg" width=420 align="right" />
 
 1. Medial geniculate body
 2. Inferior colliculus
@@ -13,7 +13,7 @@ Resources from our subcortical (midbrain and brainstem) auditory pathway mapping
 In this endeavor, the major challenges were to understand the 3D shapes of these structures (in humans) from the diagrams and figures published in previous literature as well as communicating our results to our colleagues in a common reference system (MNI space). With this repository, we aim to supplement our manuscript by making the processes lead to our results more accessible to interested readers.
 
 ### Citation
-__Sitek & Gulban__, Calabrese, Johnson, Lage-Castellanos, Moerel, Ghosh, De Martino. (2019).[__Mapping the human subcortical auditory system using histology, post mortem MRI and in vivo MRI at 7T__](https://elifesciences.org/articles/48932). eLife.
+- __Sitek & Gulban__, Calabrese, Johnson, Lage-Castellanos, Moerel, Ghosh, De Martino. (2019).[__Mapping the human subcortical auditory system using histology, post mortem MRI and in vivo MRI at 7T__](https://elifesciences.org/articles/48932). eLife.
 
 ## Dependencies
 
