@@ -42,7 +42,6 @@ var/
 # mesh related
 *.obj
 *.mtl
-*.png
 *.xyz
 
 # Dia related
