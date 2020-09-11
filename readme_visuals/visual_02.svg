@@ -14,11 +14,11 @@
    height="817"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="for_github_readme.svg"
-   inkscape:export-filename="/home/faruk/gdrive/temp_aud_bstem/figures/01_fig_literature_and_bigbrain/fig_literature_and_bigbrain.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="visual_02.svg"
+   inkscape:export-filename="/home/faruk/Git/subcortical-auditory-atlas/readme_visuals/visual_02.png"
+   inkscape:export-xdpi="150.0535"
+   inkscape:export-ydpi="150.0535"
    style="enable-background:new">
   <defs
      id="defs4">
@@ -462,19 +462,6 @@
          x="27.997673"
          y="4432.2051" />
     </clipPath>
-    <filter
-       inkscape:collect="always"
-       id="filter4663"
-       x="-0.14086957"
-       width="1.2817391"
-       y="-0.14086957"
-       height="1.2817391"
-       color-interpolation-filters="sRGB">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="16.682412"
-         id="feGaussianBlur4665" />
-    </filter>
     <clipPath
        clipPathUnits="userSpaceOnUse"
        id="clipPath4672">
@@ -618,16 +605,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.70710678"
-     inkscape:cx="810.76606"
+     inkscape:cx="525.09492"
      inkscape:cy="637.79433"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1134"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1"
+     inkscape:window-width="834"
+     inkscape:window-height="433"
+     inkscape:window-x="626"
+     inkscape:window-y="355"
+     inkscape:window-maximized="0"
      inkscape:snap-bbox="true"
      inkscape:bbox-nodes="true"
      inkscape:snap-global="true"
@@ -642,7 +629,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -653,15 +640,22 @@
      transform="translate(0,-1287.7244)">
     <text
        xml:space="preserve"
-       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:Arial;-inkscape-font-specification:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        x="534.48773"
        y="1124.1654"
-       id="text6251"
-       sodipodi:linespacing="125%"><tspan
+       id="text6251"><tspan
          sodipodi:role="line"
          id="tspan6253"
          x="534.48773"
-         y="1124.1654" /></text>
+         y="1124.1654"
+         style="font-size:12px;line-height:1.25"> </tspan></text>
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:16;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect1026"
+       width="785"
+       height="817"
+       x="0"
+       y="1287.7244" />
     <g
        id="g3773"
        inkscape:export-xdpi="150"
@@ -696,22 +690,21 @@
          inkscape:export-xdpi="150"
          inkscape:export-filename="/home/faruk/gdrive/temp_aud_bstem/figures/figure_02/Panel_04_3Drender.png"
          xml:space="preserve"
-         style="font-size:20.67429543px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:Arial;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
          x="2642.386"
          y="535.44757"
-         id="text6605-3-9-2-6-3"
-         sodipodi:linespacing="125%"><tspan
-           style="font-size:24px"
+         id="text6605-3-9-2-6-3"><tspan
+           style="font-size:24px;line-height:1.25"
            sodipodi:role="line"
            id="tspan6607-5-1-7-7-6"
            x="2642.386"
            y="535.44757">Medial</tspan><tspan
            id="tspan4949-7"
-           style="font-size:24px"
+           style="font-size:24px;line-height:1.25"
            sodipodi:role="line"
            x="2642.386"
            y="565.44757">Geniculate</tspan><tspan
-           style="font-size:24px"
+           style="font-size:24px;line-height:1.25"
            id="tspan4935-5"
            sodipodi:role="line"
            x="2642.386"
@@ -720,19 +713,18 @@
          inkscape:export-ydpi="150"
          inkscape:export-xdpi="150"
          inkscape:export-filename="/home/faruk/gdrive/temp_aud_bstem/figures/figure_02/Panel_04_3Drender.png"
-         sodipodi:linespacing="125%"
          id="text4906-3"
          y="652.72919"
          x="2642.386"
-         style="font-size:20.67429543px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:Arial;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
          xml:space="preserve"><tspan
-           style="font-size:24px;text-align:center;text-anchor:middle"
+           style="font-size:24px;line-height:1.25;text-align:center;text-anchor:middle"
            y="652.72919"
            x="2642.386"
            id="tspan4908-5"
            sodipodi:role="line">Inferior</tspan><tspan
            id="tspan4937-6"
-           style="font-size:24px;text-align:center;text-anchor:middle"
+           style="font-size:24px;line-height:1.25;text-align:center;text-anchor:middle"
            y="682.72919"
            x="2642.386"
            sodipodi:role="line">Colliculus</tspan></text>
@@ -741,17 +733,16 @@
          inkscape:export-xdpi="150"
          inkscape:export-filename="/home/faruk/gdrive/temp_aud_bstem/figures/figure_02/Panel_04_3Drender.png"
          xml:space="preserve"
-         style="font-size:20.67429543px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:Arial;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
          x="2649.843"
          y="1012.9123"
-         id="text4910-5-2"
-         sodipodi:linespacing="125%"><tspan
-           style="font-size:24px"
+         id="text4910-5-2"><tspan
+           style="font-size:24px;line-height:1.25"
            sodipodi:role="line"
            id="tspan4912-3-9"
            x="2649.843"
            y="1012.9123">Cochlear</tspan><tspan
-           style="font-size:24px"
+           style="font-size:24px;line-height:1.25"
            id="tspan4939-1"
            sodipodi:role="line"
            x="2649.843"
@@ -760,23 +751,22 @@
          inkscape:export-ydpi="150"
          inkscape:export-xdpi="150"
          inkscape:export-filename="/home/faruk/gdrive/temp_aud_bstem/figures/figure_02/Panel_04_3Drender.png"
-         sodipodi:linespacing="125%"
          id="text3744"
          y="879.67889"
          x="2649.843"
-         style="font-size:20.67429543px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Sans"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:Arial;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
          xml:space="preserve"><tspan
-           style="font-size:24px"
+           style="font-size:24px;line-height:1.25"
            y="879.67889"
            x="2649.843"
            sodipodi:role="line"
            id="tspan3748">Superior</tspan><tspan
-           style="font-size:24px"
+           style="font-size:24px;line-height:1.25"
            id="tspan3752"
            y="909.67889"
            x="2649.843"
            sodipodi:role="line">Olivary</tspan><tspan
-           style="font-size:24px"
+           style="font-size:24px;line-height:1.25"
            id="tspan3754"
            y="939.67889"
            x="2649.843"
